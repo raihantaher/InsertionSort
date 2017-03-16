@@ -10,45 +10,54 @@ namespace InsertionSort
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Insertion Sort: \n");
+
             int[] theNumbers = { 4, 7, 3, 8, 6, 1, 2, 9, 5, 0 };
 
-            List<int> sort = new List<int>();
-            
-            for (int x = 0; x < theNumbers.Length; x++)
+            Console.WriteLine("The array before sorting:");
+
+            for(int i = 0; i < theNumbers.Length; i++)
             {
-                if (sort.Count == 0)
-                {
-                    sort.Add(theNumbers[x]);
-                    Console.WriteLine("inside zero");
-                    foreach(int item in sort)
-                    {
-                        Console.WriteLine(item);
-                    }
-                }
-                else
-                {
-                    for (int a = sort.Count; a > 0; a--)
-                    {
+                Console.Write(theNumbers[i]);
 
-                        if (sort[a - 1] < theNumbers[x])
-                        {
-                            sort.Add(theNumbers[x]);
-                        }
-                        else
-                        {
-                            sort.Add(sort[a - 1]);
-                            sort[a - 1] = theNumbers[x];
-                        }
-                    }
+                if(i < theNumbers.Length - 1)
+                {
+                    Console.Write(", ");
                 }
-
             }
-
-            foreach(int item in sort)
+            
+            for (int item = 1; item <theNumbers.Length; item++)
             {
-                Console.Write(item + ",");
+                int j = item;
+                while(j > 0)
+                {
+                    if(theNumbers[j-1] > theNumbers[j])
+                    {
+                        int holder = theNumbers[j];
+                        theNumbers[j] = theNumbers[j - 1];
+                        theNumbers[j - 1] = holder;
+                        j--;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine("\n");
+            Console.WriteLine("The array after sorting: ");
+
+            for (int i = 0; i < theNumbers.Length; i++)
+            {
+                Console.Write(theNumbers[i]);
+
+                if (i < theNumbers.Length - 1)
+                {
+                    Console.Write(", ");
+                }
             }
             Console.ReadKey();
+            
         }
     }
 }
